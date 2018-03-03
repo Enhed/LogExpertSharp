@@ -1,7 +1,7 @@
 
 using LogExpertSharp;
 
-namespace ConsoleFoo
+namespace LogExpertSharp
 {
     public sealed class AlertResponse : Response
     {

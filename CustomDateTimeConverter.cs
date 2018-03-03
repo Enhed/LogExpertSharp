@@ -1,6 +1,6 @@
 using Newtonsoft.Json.Converters;
 
-namespace ConsoleFoo
+namespace LogExpertSharp
 {
     public sealed class CustomDateTimeConverter : IsoDateTimeConverter
     {

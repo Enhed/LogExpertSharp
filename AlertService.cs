@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 using LogExpertSharp;
 
-namespace ConsoleFoo
+namespace LogExpertSharp
 {
     public sealed class AlertService : HttpService
     {
