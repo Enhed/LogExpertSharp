@@ -7,7 +7,7 @@ const string token = "your token";
 var accounting = new Accounting(token);
 var users = await accounting.GetUsers();
 
-foreach(var user in users.Take(10))
+foreach(var user in users)
 {
     Console.WriteLine($"{user.Id} = {user.Name}");
 }
