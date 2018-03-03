@@ -1,6 +1,6 @@
 # LogExpertSharp
 .NET Standard 2.0 Library to access LogExpert API. http://wiki.denexy.ru/le/API/API/
-# Accounting
+## Accounting
 
 ```c#
 const string token = "your token";
