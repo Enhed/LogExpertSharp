@@ -1,8 +1,8 @@
 # LogExpertSharp
-.NET Standard 2.0 Library to access LogExpert API.
-Source api documentation http://wiki.denexy.ru/le/API/API/
-For more information on LogExpert visit https://logexpert.ru
-Support email support@logexpert.ru
+.NET Standard 2.0 Library to access LogExpert API.  
+Source api documentation http://wiki.denexy.ru/le/API/API/  
+For more information on LogExpert visit https://logexpert.ru  
+Support email support@logexpert.ru  
 
 ## Description of services
 Any service requires an authentication token
