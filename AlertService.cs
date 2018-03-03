@@ -69,8 +69,6 @@ namespace LogExpertSharp
             var start = ( nameof(startDate), startDate.ToString(format));
             var end = ( nameof(endDate), endDate.ToString(format) );
 
-            System.Console.WriteLine($"{start.Item2} - {end.Item2}");
-
             var method = $"{NAME}/{nameof(GetAlertsBetweenDates)}";
             var task = Connection.Post(method, start, end);
 
