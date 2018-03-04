@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace LogExpertSharp
+namespace LogExpertSharp.Alerts
 {
     public sealed class Alert
     {

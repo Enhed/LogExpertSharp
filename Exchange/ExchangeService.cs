@@ -3,15 +3,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace LogExpertSharp
+namespace LogExpertSharp.Exchange
 {
-    public sealed class Exchange : HttpService
+    public sealed class ExchangeService : HttpService
     {
-        public Exchange(Connection connection) : base(connection)
+        public ExchangeService(Connection connection) : base(connection)
         {
         }
 
-        public Exchange(string token) : base(token)
+        public ExchangeService(string token) : base(token)
         {
         }
 
@@ -23,7 +23,7 @@ namespace LogExpertSharp
             var b = ( nameof(begin), begin.ToString(format) );
             var e = ( nameof(end), end.ToString(format) );
 
-            var method = $"{nameof(Exchange)}/{nameof(GetEngineHours)}";
+            var method = $"{nameof(ExchangeService)}/{nameof(GetEngineHours)}";
             var task = Connection.Post(method, i, b, e);
 
             using(var response = await task)
@@ -47,7 +47,7 @@ namespace LogExpertSharp
             var rd = ( nameof(useRideDetector), useRideDetector.ToString() );
             var alt = ( nameof(useAltitude), useAltitude.ToString() );
 
-            var method = $"{nameof(Exchange)}/{nameof(GetMileage)}";
+            var method = $"{nameof(ExchangeService)}/{nameof(GetMileage)}";
             var task = Connection.Post(method, i, b, e, rd, alt);
 
             using(var response = ( await task ).EnsureSuccessStatusCode() )

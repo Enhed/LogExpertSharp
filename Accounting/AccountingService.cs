@@ -2,16 +2,16 @@ using System;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace LogExpertSharp
+namespace LogExpertSharp.Accounting
 {
 
-    public sealed class Accounting : HttpService
+    public sealed class AccountingService : HttpService
     {
-        public Accounting(Connection connection) : base(connection)
+        public AccountingService(Connection connection) : base(connection)
         {
         }
 
-        public Accounting(string token) : base(token)
+        public AccountingService(string token) : base(token)
         {
         }
 

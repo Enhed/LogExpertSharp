@@ -3,9 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-using LogExpertSharp;
-
-namespace LogExpertSharp
+namespace LogExpertSharp.Alerts
 {
     public sealed class AlertService : HttpService
     {

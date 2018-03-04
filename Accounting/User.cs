@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace LogExpertSharp
+namespace LogExpertSharp.Accounting
 {
     public sealed class User
     {
