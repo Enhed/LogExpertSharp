@@ -10,8 +10,10 @@ Any service requires an authentication token
 ### Accounting
 
 ```c#
+using LogExpertSharp.Accounting;
+
 const string token = "your token";
-var accounting = new Accounting(token);
+var accounting = new AccountingService(token);
 var users = await accounting.GetUsers();
 
 foreach(var user in users)
