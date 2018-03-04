@@ -69,13 +69,14 @@ namespace LogExpertSharp
             var start = ( nameof(startDate), startDate.ToString(format));
             var end = ( nameof(endDate), endDate.ToString(format) );
 
-            var method = $"{NAME}/{nameof(GetAlertsBetweenDates)}";
+            var method = $"alerts/{nameof(GetAlertsBetweenDates)}";
             var task = Connection.Post(method, start, end);
 
-            using(var response = await task)
+            using(var response = ( await task ).EnsureSuccessStatusCode() )
             {
-                response.EnsureSuccessStatusCode();
-                var result = JsonConvert.DeserializeObject<AlertResponse>(await response.Content.ReadAsStringAsync());
+                var result = JsonConvert
+                    .DeserializeObject<AlertResponse>(await response.Content.ReadAsStringAsync());
+
                 return result.Success ? result.Alerts : throw new Exception(result.Message);
             }
         }
