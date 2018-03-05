@@ -67,7 +67,7 @@ namespace LogExpertSharp.Alerts
             var start = ( nameof(startDate), startDate.ToString(format));
             var end = ( nameof(endDate), endDate.ToString(format) );
 
-            var method = $"alerts/{nameof(GetAlertsBetweenDates)}";
+            var method = $"{NAME}/{nameof(GetAlertsBetweenDates)}";
             var task = Connection.Post(method, start, end);
 
             using(var response = ( await task ).EnsureSuccessStatusCode() )
