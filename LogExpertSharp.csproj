@@ -1,6 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>LogExpertSharp</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>Enhed</Authors>
+    <Company>LogExpert</Company>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.1"/>
