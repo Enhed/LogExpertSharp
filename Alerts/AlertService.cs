@@ -22,9 +22,9 @@ namespace LogExpertSharp.Alerts
             using(var response = await Connection.Post($"{NAME}/{nameof(GetUnreaded)}"))
             {
                 response.EnsureSuccessStatusCode();
-                
-                var alertResponse = JsonConvert.DeserializeObject<AlertResponse>(await response.Content.ReadAsStringAsync());
-                return alertResponse.Success ? alertResponse.Alerts : throw new Exception(alertResponse.Message);
+                var result = await response.Content.ReadAsStringAsync();
+                var alertResponse = JsonConvert.DeserializeObject<AlertResponse>(result);
+                return alertResponse.Success ? alertResponse.Data : throw new Exception(alertResponse.Message);
             }
         }
 
@@ -58,7 +58,6 @@ namespace LogExpertSharp.Alerts
             }
         }
 
-        [Obsolete("Not working now")]
         public async Task<Alert[]> GetAlertsBetweenDates(DateTime startDate, DateTime endDate)
         {
             //date format: 28/02/2018 00:00:00.000
@@ -72,10 +71,11 @@ namespace LogExpertSharp.Alerts
 
             using(var response = ( await task ).EnsureSuccessStatusCode() )
             {
+                var stringResult = await response.Content.ReadAsStringAsync();
                 var result = JsonConvert
-                    .DeserializeObject<AlertResponse>(await response.Content.ReadAsStringAsync());
+                    .DeserializeObject<AlertResponse>(stringResult);
 
-                return result.Success ? result.Alerts : throw new Exception(result.Message);
+                return result.Success ? result.Data : throw new Exception(result.Message);
             }
         }
     }
