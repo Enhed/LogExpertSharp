@@ -1,9 +1,8 @@
 
 namespace LogExpertSharp.Alerts
 {
-    internal sealed class AlertResponse : Response
+    internal sealed class AlertResponse : ResponseData<Alert[]>
     {
-        public Alert[] Alerts;
     }
 
 }
