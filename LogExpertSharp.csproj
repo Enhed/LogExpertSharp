@@ -2,9 +2,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>LogExpertSharp</PackageId>
-    <Version>0.1.15</Version>
+    <Version>0.1.16</Version>
     <Authors>Enhed</Authors>
     <Company>LogExpert</Company>
+    <RepositoryUrl>https://github.com/Enhed/LogExpertSharp.git</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/Enhed/LogExpertSharp/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryType>Git</RepositoryType>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.1"/>
