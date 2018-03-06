@@ -28,16 +28,14 @@ namespace LogExpertSharp.Alerts
             }
         }
 
-        [Obsolete("Not working now")]
         public async Task SetViewed(params Alert[] alerts)
         {
             if(alerts?.Length == 0) return;
-            const string paramName = "ids";
+            const string paramName = "ids[]";
 
-            var value = JsonConvert.SerializeObject(alerts.Select(x => x.Id).ToArray());
-            var tuple = (paramName, value);
+            var ids = alerts.Select(a => (paramName, a.Id.ToString())).ToArray();
 
-            using(var response = await Connection.Post($"{NAME}/{nameof(SetViewed)}", tuple))
+            using(var response = await Connection.Post($"{NAME}/{nameof(SetViewed)}", ids))
             {
                 response.EnsureSuccessStatusCode();
 
