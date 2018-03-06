@@ -21,3 +21,14 @@ foreach(var user in users)
     Console.WriteLine($"{user.Id} = {user.Name}");
 }
 ```
+
+### Alerts
+
+```c#
+
+using LogExpertSharp.Accounting;
+
+var alertService = new AlertService("token");
+var unreadedAlerts = alertService.GetUnreaded();
+
+```
