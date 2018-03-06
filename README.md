@@ -26,7 +26,7 @@ foreach(var user in users)
 
 ```c#
 
-using LogExpertSharp.Accounting;
+using LogExpertSharp.Alerts;
 
 var alertService = new AlertService("token");
 var unreadedAlerts = alertService.GetUnreaded();
