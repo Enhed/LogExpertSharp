@@ -29,6 +29,6 @@ foreach(var user in users)
 using LogExpertSharp.Alerts;
 
 var alertService = new AlertService("token");
-var unreadedAlerts = alertService.GetUnreaded();
+var unreadedAlerts = await alertService.GetUnreaded();
 
 ```
