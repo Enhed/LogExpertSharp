@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using LogExpertSharp.Extensions;
 
 namespace LogExpertSharp.Alerts
 {
@@ -28,14 +29,16 @@ namespace LogExpertSharp.Alerts
             }
         }
 
-        public async Task SetViewed(params Alert[] alerts)
+        public Task SetViewed(params Alert[] alerts)
+            => SetViewed(alerts.Select(a => a.Id).ToArray());
+
+        public async Task SetViewed(int[] ids)
         {
-            if(alerts?.Length == 0) return;
-            const string paramName = "ids[]";
+            if(ids?.Length == 0) return;
+            var paramName = $"{nameof(ids)}[]";
+            var tuples = ids.Select(i => (paramName, i.ToString())).ToArray();
 
-            var ids = alerts.Select(a => (paramName, a.Id.ToString())).ToArray();
-
-            using(var response = await Connection.Post($"{NAME}/{nameof(SetViewed)}", ids))
+            using(var response = await Connection.Post($"{NAME}/{nameof(SetViewed)}", tuples))
             {
                 response.EnsureSuccessStatusCode();
 
@@ -58,11 +61,8 @@ namespace LogExpertSharp.Alerts
 
         public async Task<Alert[]> GetAlertsBetweenDates(DateTime startDate, DateTime endDate)
         {
-            //date format: 28/02/2018 00:00:00.000
-            var format = "dd/MM/yyyy HH:mm:ss.fff";
-
-            var start = ( nameof(startDate), startDate.ToString(format));
-            var end = ( nameof(endDate), endDate.ToString(format) );
+            var start = ( nameof(startDate), startDate.ToRestString());
+            var end = ( nameof(endDate), endDate.ToRestString() );
 
             var method = $"{NAME}/{nameof(GetAlertsBetweenDates)}";
             var task = Connection.Post(method, start, end);
