@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using LogExpertSharp.Extensions;
 
 namespace LogExpertSharp.Exchange
 {
@@ -17,11 +18,9 @@ namespace LogExpertSharp.Exchange
 
         public async Task<TimeSpan> GetEngineHours(int objectId, DateTime begin, DateTime end)
         {
-            var format = "dd/MM/yyyy HH:mm:ss.fff";
-
             var i = ( nameof(objectId) , objectId.ToString() );
-            var b = ( nameof(begin), begin.ToString(format) );
-            var e = ( nameof(end), end.ToString(format) );
+            var b = ( nameof(begin), begin.ToRestString() );
+            var e = ( nameof(end), end.ToRestString() );
 
             var method = $"{nameof(ExchangeService)}/{nameof(GetEngineHours)}";
             var task = Connection.Post(method, i, b, e);
@@ -39,11 +38,9 @@ namespace LogExpertSharp.Exchange
         public async Task<float> GetMileage(int objectId, 
             DateTime begin, DateTime end, bool useRideDetector = false, bool useAltitude = true)
         {
-            var format = "dd/MM/yyyy HH:mm:ss.fff";
-
             var i = ( nameof(objectId) , objectId.ToString() );
-            var b = ( nameof(begin), begin.ToString(format) );
-            var e = ( nameof(end), end.ToString(format) );
+            var b = ( nameof(begin), begin.ToRestString() );
+            var e = ( nameof(end), end.ToRestString() );
             var rd = ( nameof(useRideDetector), useRideDetector.ToString() );
             var alt = ( nameof(useAltitude), useAltitude.ToString() );
 
