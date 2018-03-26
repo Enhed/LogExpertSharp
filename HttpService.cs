@@ -1,6 +1,8 @@
+using System;
+
 namespace LogExpertSharp
 {
-    public abstract class HttpService
+    public abstract class HttpService : IDisposable
     {
         protected readonly Connection Connection;
 
@@ -13,5 +15,7 @@ namespace LogExpertSharp
         {
             Connection = new Connection(token);
         }
+
+        public void Dispose() => Connection.Dispose();
     }
 }
