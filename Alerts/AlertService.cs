@@ -76,6 +76,50 @@ namespace LogExpertSharp.Alerts
                 return result.Success ? result.Data : throw new Exception(result.Message);
             }
         }
+
+        public async Task<Trigger[]> GetTriggers()
+        {
+            var method = $"{NAME}/{nameof(GetTriggers)}";
+
+            using(var response = ( await Connection.Post(method) ).EnsureSuccessStatusCode() )
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<Trigger[]>(result);
+            }
+        }
+
+        public async Task<Alert[]> GetAlerts(int triggerId, DateTime begin, DateTime end)
+        {
+            var method = $"{NAME}/{nameof(GetAlerts)}";
+
+            var id = ( nameof(triggerId), triggerId.ToString() );
+            var b = ( nameof(begin), begin.ToRestString() );
+            var e = ( nameof(end), end.ToRestString() );
+
+            using(var response = (await Connection.Post(method, id, b, e)).EnsureSuccessStatusCode() )
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<Alert[]>(result);
+            }
+        }
+
+        public Task<Alert[]> GetAlerts(Trigger trigger, DateTime begin, DateTime end)
+        {
+            return GetAlerts(trigger.Id, begin, end);
+        }
+
+        public Task<Alert[]> GetAlerts(Trigger trigger, DateTime begin)
+        {
+            return GetAlerts(trigger.Id, begin, DateTime.Now);
+        }
     }
 
+    public sealed class Trigger
+    {
+        public int Id;
+        public string Name;
+        public string Type;
+        public bool IsEnabled;
+        public object Settings;
+    }
 }
