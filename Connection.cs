@@ -12,7 +12,7 @@ namespace LogExpertSharp
         private const string DOMAIN = "gis";
 #endif
 
-        private const string BASE_URL = "https://" + DOMAIN + ".logexpert.ru";
+        private const string BASE_URL = "https://" + DOMAIN + ".logexpert.ru/api/";
 
         private readonly string token;
 
